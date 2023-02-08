@@ -1,0 +1,98 @@
+﻿@model Ingredient
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<head>
+
+<style>
+    .box{
+            position: absolute;
+            height: 27px;
+            text-align: center;
+            border-radius: 3px;
+            top: calc(60% - 5px/2);
+            left: calc(50% - 220px/2);
+
+        }
+   .text{
+            position: absolute;
+            height: 10px;
+            text-align: center;
+            border-radius: 3px;
+            top: calc(50% - 100px/2);
+            left: calc(50% - 260px/2);
+            color: white;
+        }
+    body {
+    
+        background-image: url('/images/-min.jpg');
+        background-repeat:no-repeat;
+        background-size: cover;
+    }
+
+
+
+</style>
+
+</head>
+
+<div class="text">
+    <h1>
+        Fridgeopolis
+    </h1>
+    <p>
+        Become your own chef.
+    </p>
+</div>
+
+
+    <div class = "box" >
+@using (Html.BeginForm("Details", "Home", FormMethod.Get))
+{
+    @Html.TextBoxFor(model => model.ingredients)
+        @Html.ValidationMessageFor(model => model.ingredients,  "", new { @class = "text-danger" })
+    <p>
+            <button type="submit">Submit</button>
+    </p>
+    
+}
+</div>
+
+
+@*<div class="text-center">
+    <form id="form" role="search">
+        <input type="search" id="query" name="q"
+               placeholder="Ex(eggs, chicken, pasta)"
+               >
+        <button asp-action="Details" asp-controller="Home" asp-route-ingredients= "eggs">Submit</button>
+        
+    </form>
+    </div>*@
+
+@*<div>
+    <h4>Recipes</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Summary)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Summary)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.SourceUrl)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.SourceUrl)
+        </dd>
+     
+    </dl>
+</div>*@
+

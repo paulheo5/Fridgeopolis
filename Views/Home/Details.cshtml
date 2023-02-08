@@ -1,0 +1,45 @@
+﻿<style>
+
+    body {
+        background-color: tan;
+    }
+    .container{
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr;
+        text-align: center
+    }
+</style>
+
+
+
+
+<div class = "container">
+    @foreach (Recipe recipe in Model)
+    {
+  <dl class="row">
+@*        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => recipe.Title)
+        </dt>*@
+        <dd class="col-sm-10">
+                <b>@Html.DisplayFor(model => recipe.Title)</b>
+        </dd>
+      
+        <dd class="col-sm-10">
+                <a href="@Url.Action("RecipeInfo", "Home", new { id = recipe.ID })">
+                    <img src="@recipe.Image" alt="" />
+                </a>
+               @* <a asp-action="RecipeInfo" asp-controller="Home">
+                    <img class="displayed1" src="@recipe.Image" alt="" />
+                </a>*@
+            
+               
+        </dd>
+       
+     
+    </dl>
+
+       
+
+    }
+</div>

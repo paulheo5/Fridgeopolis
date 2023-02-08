@@ -1,0 +1,17 @@
+﻿@*@model List<Root>*@
+@{
+    ViewData["Title"] = "RecipeInstruction";
+}
+
+@*<p>@Html.DisplayFor(model => model.steps)</p>*@
+<div>
+     @foreach (Root item in Model)
+    {
+    <p>
+            @Html.DisplayFor(model => item.steps)
+     </p>
+    }
+</div>
+
+
+

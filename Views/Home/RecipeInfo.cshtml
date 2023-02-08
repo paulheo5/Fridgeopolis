@@ -1,0 +1,50 @@
+﻿@model RecipeData
+@{
+    ViewData["Title"] = "RecipeInfo";
+}
+<style>
+    body {
+        background-color: tan;
+    }
+</style>
+
+  
+<div class="display-field">  
+<img src="@Url.Content(@Model.Image)" />  
+</div>
+
+<h1 style="color: teal">@Html.DisplayFor(model => model.Title)</h1>
+
+<h2>Ready in @Html.DisplayFor(model => model.ReadyInMinutes) minutes!</h2>
+
+<h3>For more information visit:
+</h3>
+<p1>
+    <a href="@Model.SourceUrl">@Html.DisplayFor(model => model.SourceUrl)</a>
+</p1>
+
+<p>
+    @{
+        Html.RenderPartial("SummaryView");   
+    }
+      @using (Html.BeginForm("RecipeInstruction", "Home", new { id = Model.ID }, FormMethod.Get))
+    {
+        <p>
+                <button type="submit">Instructions</button>
+        </p>
+
+    }
+
+  
+ 
+    @using (Html.BeginForm("Save", "Home", FormMethod.Post))
+    {
+        <input type="submit" name="actionType" value="Save" />
+
+        
+
+
+}
+
+</p>
+
