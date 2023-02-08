@@ -4,6 +4,7 @@ using Fridgeopolis.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fridgeopolis.Migrations
 {
     [DbContext(typeof(RecipeDBContext))]
-    partial class RecipeDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230208201526_NutritionData_Date")]
+    partial class NutritionDataDate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -62,8 +65,7 @@ namespace Fridgeopolis.Migrations
                         .HasColumnName("carbohydrates");
 
                     b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("FatPerServing")
                         .HasColumnType("int")
