@@ -4,6 +4,7 @@ using Fridgeopolis.DataContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fridgeopolis.Migrations
 {
     [DbContext(typeof(RecipeDBContext))]
-    partial class RecipeDBContextModelSnapshot : ModelSnapshot
+    [Migration("20230208195157_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,61 +45,6 @@ namespace Fridgeopolis.Migrations
                     b.HasIndex("RecipeDataID");
 
                     b.ToTable("Datum");
-                });
-
-            modelBuilder.Entity("Fridgeopolis.Models.NutritionFacts", b =>
-                {
-                    b.Property<int>("NutritionId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasColumnName("nutrition_id");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("NutritionId"));
-
-                    b.Property<int>("CaloriesPerServing")
-                        .HasColumnType("int")
-                        .HasColumnName("calories");
-
-                    b.Property<int>("CarbohydratesPerServing")
-                        .HasColumnType("int")
-                        .HasColumnName("carbohydrates");
-
-                    b.Property<DateTime>("Date")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
-
-                    b.Property<int>("FatPerServing")
-                        .HasColumnType("int")
-                        .HasColumnName("fat");
-
-                    b.Property<string>("FoodName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("food_name");
-
-                    b.Property<int>("PhosphorusPerServing")
-                        .HasColumnType("int")
-                        .HasColumnName("phosphorus");
-
-                    b.Property<int>("PotassiumPerServing")
-                        .HasColumnType("int")
-                        .HasColumnName("potassium");
-
-                    b.Property<int>("ProteinPerServing")
-                        .HasColumnType("int")
-                        .HasColumnName("protein");
-
-                    b.Property<double>("Servings")
-                        .HasColumnType("float")
-                        .HasColumnName("servings");
-
-                    b.Property<int>("SodiumPerServing")
-                        .HasColumnType("int")
-                        .HasColumnName("sodium");
-
-                    b.HasKey("NutritionId");
-
-                    b.ToTable("NutritionData");
                 });
 
             modelBuilder.Entity("Fridgeopolis.Models.PropertyModel", b =>
