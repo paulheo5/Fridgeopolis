@@ -17,6 +17,7 @@
             <tr>
                 <td>@Html.DisplayFor(modelItem => item.brandOwner)</td>
                 <td>@Html.DisplayFor(modelItem => item.description)</td>
+                <td><a asp-action="details" asp-route-id="@item.fdcId">Details</a></td>
             </tr>
         }
     </table>

@@ -20,6 +20,8 @@ namespace Fridgeopolis.Controllers
 
         HttpClient client = new();
 
+        static FdcResults jsData = new();
+
         public NutritionFactsController(RecipeDBContext context)
         {
             _context = context;
@@ -49,7 +51,7 @@ namespace Fridgeopolis.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var jstr = await response.Content.ReadAsStringAsync();
-                var jsData = JsonConvert.DeserializeObject<FdcResults>(jstr);
+                jsData = JsonConvert.DeserializeObject<FdcResults>(jstr);
 
                 return View(jsData);
             }
@@ -63,13 +65,12 @@ namespace Fridgeopolis.Controllers
         // GET: NutritionFacts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null || _context.NutritionData == null)
+            if (id == null || jsData.foods == null)
             {
                 return NotFound();
             }
 
-            var nutritionFacts = await _context.NutritionData
-                .FirstOrDefaultAsync(m => m.NutritionId == id);
+            var nutritionFacts = jsData.foods.FirstOrDefault(f => f.fdcId == id).ToModel();
             if (nutritionFacts == null)
             {
                 return NotFound();

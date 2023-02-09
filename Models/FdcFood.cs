@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
@@ -82,6 +84,40 @@ namespace Fridgeopolis.Models
         public int rank { get; set; }
         public int srCode { get; set; }
         public double value { get; set; }
+    }
+
+    public enum NutrientIds
+    {
+        Calories = 1008, Protein = 1003, Fat = 1004, Carbohydrates = 1005, Phosphorus = 1091, Potassium = 1092, Sodium = 1093
+    }
+
+    static class ToNutritionFacts
+    {
+        public static NutritionFacts ToModel(this Food food)
+        {
+            string FoodName = food.description;
+            int? CaloriesPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int)NutrientIds.Calories, new FoodNutrient() { value = -1 }).value);
+            int? CarbohydratesPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Carbohydrates, new FoodNutrient() { value = 0 }).value) ?? 0;
+            int? ProteinPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Protein, new FoodNutrient() { value = 0 }).value) ?? 0;
+            int? FatPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Fat, new FoodNutrient() { value = 0 }).value) ?? 0;
+            int? PhosphorusPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Phosphorus, new FoodNutrient() { value = 0}).value) ?? 0;
+            int? PotassiumPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Potassium, new FoodNutrient() { value = 0 }).value) ?? 0;
+            int? SodiumPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Sodium, new FoodNutrient() { value = 0 }).value) ?? 0;
+            
+            return new NutritionFacts()
+            {
+                FoodName = FoodName,
+                CaloriesPerServing = CaloriesPerServing == -1 ? (((int)CarbohydratesPerServing + (int)ProteinPerServing) * 4) + ((int)FatPerServing * 9) : (int)CaloriesPerServing,
+                CarbohydratesPerServing = CarbohydratesPerServing ?? 0,
+                ProteinPerServing = ProteinPerServing ?? 0,
+                FatPerServing = FatPerServing ?? 0,
+                PhosphorusPerServing = PhosphorusPerServing ?? 0,
+                PotassiumPerServing = PotassiumPerServing ?? 0,
+                SodiumPerServing = SodiumPerServing ?? 0,
+                Servings = 1,
+                Date = DateTime.Now
+            };
+        }
     }
 
     public class Food
