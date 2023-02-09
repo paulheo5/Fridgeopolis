@@ -7,12 +7,18 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fridgeopolis.DataContext;
 using Fridgeopolis.Models;
+using System.Net.Http.Headers;
+using Newtonsoft.Json;
+using System.Net.WebSockets;
+using Microsoft.Build.Construction;
 
 namespace Fridgeopolis.Controllers
 {
     public class NutritionFactsController : Controller
     {
         private readonly RecipeDBContext _context;
+
+        HttpClient client = new();
 
         public NutritionFactsController(RecipeDBContext context)
         {
@@ -23,6 +29,35 @@ namespace Fridgeopolis.Controllers
         public async Task<IActionResult> Index()
         {
               return View(await _context.NutritionData.ToListAsync());
+        }
+
+        public IActionResult Search()
+        {
+            return View();
+        }
+
+        public async Task<IActionResult> Results(Search model)
+        {
+            if(client.BaseAddress == null)
+            {
+                client.BaseAddress = new Uri("https://api.nal.usda.gov/fdc/v1/foods/search");
+            }
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            HttpResponseMessage response = await client.GetAsync(client.BaseAddress.ToString() + "?query=" + model.SearchString + "&api_key=" + "beRFFWSIsr5S5dntcc8JS1tFscBHd5mtbkonR5Ps");
+            if (response.IsSuccessStatusCode)
+            {
+                var jstr = await response.Content.ReadAsStringAsync();
+                var jsData = JsonConvert.DeserializeObject<FdcResults>(jstr);
+
+                return View(jsData);
+            }
+            else
+            {
+                return Content("No Food Items Found");
+            }
+
         }
 
         // GET: NutritionFacts/Details/5
