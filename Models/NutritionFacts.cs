@@ -39,7 +39,7 @@ namespace Fridgeopolis.Models
         public double Servings { get; set; }
         [Column("date")]
         [DisplayName("Date")]
-        [DataType(DataType.Date)]
+        [System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
         public DateTime Date { get; set; }
     }
 }
