@@ -80,9 +80,10 @@ namespace Fridgeopolis.Controllers
         }
 
         // GET: NutritionFacts/Create
-        public IActionResult Create()
+        [HttpGet]
+        public IActionResult Create(NutritionFacts model)
         {
-            return View();
+            return View(model);
         }
 
         // POST: NutritionFacts/Create
@@ -90,7 +91,7 @@ namespace Fridgeopolis.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("NutritionId,FoodName,CaloriesPerServing,CarbohydratesPerServing,ProteinPerServing,FatPerServing,PhosphorusPerServing,PotassiumPerServing,SodiumPerServing,Servings,Date")] NutritionFacts nutritionFacts)
+        public async Task<IActionResult> Create([Bind("MealId,FoodName,CaloriesPerServing,CarbohydratesPerServing,ProteinPerServing,FatPerServing,PhosphorusPerServing,PotassiumPerServing,SodiumPerServing,Servings,Date")] NutritionFacts nutritionFacts)
         {
             if (ModelState.IsValid)
             {
@@ -124,7 +125,7 @@ namespace Fridgeopolis.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("NutritionId,FoodName,CaloriesPerServing,CarbohydratesPerServing,ProteinPerServing,FatPerServing,PhosphorusPerServing,PotassiumPerServing,SodiumPerServing,Servings,Date")] NutritionFacts nutritionFacts)
         {
-            if (id != nutritionFacts.NutritionId)
+            if (id != nutritionFacts.MealId)
             {
                 return NotFound();
             }
@@ -138,7 +139,7 @@ namespace Fridgeopolis.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NutritionFactsExists(nutritionFacts.NutritionId))
+                    if (!NutritionFactsExists(nutritionFacts.MealId))
                     {
                         return NotFound();
                     }
@@ -161,7 +162,7 @@ namespace Fridgeopolis.Controllers
             }
 
             var nutritionFacts = await _context.NutritionData
-                .FirstOrDefaultAsync(m => m.NutritionId == id);
+                .FirstOrDefaultAsync(m => m.MealId == id);
             if (nutritionFacts == null)
             {
                 return NotFound();
@@ -191,7 +192,7 @@ namespace Fridgeopolis.Controllers
 
         private bool NutritionFactsExists(int id)
         {
-          return _context.NutritionData.Any(e => e.NutritionId == id);
+          return _context.NutritionData.Any(e => e.MealId == id);
         }
     }
 }

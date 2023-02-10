@@ -8,8 +8,8 @@ namespace Fridgeopolis.Models
     public class NutritionFacts
     {
         [Key]
-        [Column("nutrition_id")]
-        public int NutritionId { get; set; }
+        [Column("meal_id")]
+        public int MealId { get; set; }
         [Column("food_name")]
         [DisplayName("Name")]
         public string FoodName { get; set; }
