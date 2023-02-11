@@ -22,6 +22,8 @@ namespace Fridgeopolis.Controllers
 
         static FdcResults jsData = new();
 
+        static NutritionFacts nutritionItem = new();
+
         public NutritionFactsController(RecipeDBContext context)
         {
             _context = context;
@@ -62,8 +64,8 @@ namespace Fridgeopolis.Controllers
 
         }
 
-        // GET: NutritionFacts/Details/5
-        public async Task<IActionResult> Details(int? id)
+        // GET: NutritionFacts/NutritionDetails/5
+        public async Task<IActionResult> NutritionDetails(int? id)
         {
             if (id == null || jsData.foods == null)
             {
@@ -76,14 +78,32 @@ namespace Fridgeopolis.Controllers
                 return NotFound();
             }
 
+            nutritionItem = nutritionFacts;
+            return View(nutritionFacts);
+        }
+
+        // GET: NutritionFacts/NutritionDetails/5
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null || _context.NutritionData == null)
+            {
+                return NotFound();
+            }
+
+            var nutritionFacts = _context.NutritionData.FirstOrDefault(f => f.MealId == id);
+            if (nutritionFacts == null)
+            {
+                return NotFound();
+            }
+
             return View(nutritionFacts);
         }
 
         // GET: NutritionFacts/Create
         [HttpGet]
-        public IActionResult Create(NutritionFacts model)
+        public IActionResult Create()
         {
-            return View(model);
+            return View(nutritionItem.ToMeal());
         }
 
         // POST: NutritionFacts/Create
@@ -91,15 +111,15 @@ namespace Fridgeopolis.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("MealId,FoodName,CaloriesPerServing,CarbohydratesPerServing,ProteinPerServing,FatPerServing,PhosphorusPerServing,PotassiumPerServing,SodiumPerServing,Servings,Date")] NutritionFacts nutritionFacts)
+        public async Task<IActionResult> Create([Bind("MealId,FoodName,CaloriesPerServing,CarbohydratesPerServing,ProteinPerServing,FatPerServing,PhosphorusPerServing,PotassiumPerServing,SodiumPerServing,Servings,Date")] Meal meal)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(nutritionFacts);
+                _context.Add(meal);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(nutritionFacts);
+            return View(meal);
         }
 
         // GET: NutritionFacts/Edit/5
@@ -123,9 +143,9 @@ namespace Fridgeopolis.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("NutritionId,FoodName,CaloriesPerServing,CarbohydratesPerServing,ProteinPerServing,FatPerServing,PhosphorusPerServing,PotassiumPerServing,SodiumPerServing,Servings,Date")] NutritionFacts nutritionFacts)
+        public async Task<IActionResult> Edit(int id, [Bind("MealId,FoodName,CaloriesPerServing,CarbohydratesPerServing,ProteinPerServing,FatPerServing,PhosphorusPerServing,PotassiumPerServing,SodiumPerServing,Servings,Date")] Meal meal)
         {
-            if (id != nutritionFacts.MealId)
+            if (id != meal.MealId)
             {
                 return NotFound();
             }
@@ -134,12 +154,12 @@ namespace Fridgeopolis.Controllers
             {
                 try
                 {
-                    _context.Update(nutritionFacts);
+                    _context.Update(meal);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!NutritionFactsExists(nutritionFacts.MealId))
+                    if (!NutritionFactsExists(meal.MealId))
                     {
                         return NotFound();
                     }
@@ -150,7 +170,7 @@ namespace Fridgeopolis.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(nutritionFacts);
+            return View(meal);
         }
 
         // GET: NutritionFacts/Delete/5
