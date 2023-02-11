@@ -5,41 +5,44 @@ using System.Security.Permissions;
 
 namespace Fridgeopolis.Models
 {
+    static class ToMealClass
+    {
+        public static Meal ToMeal(this NutritionFacts nf)
+        {
+            return new Meal()
+            {
+                FoodName = nf.FoodName,
+                CaloriesPerServing = nf.CaloriesPerServing,
+                CarbohydratesPerServing = nf.CarbohydratesPerServing,
+                ProteinPerServing = nf.ProteinPerServing,
+                FatPerServing = nf.FatPerServing,
+                PhosphorusPerServing = nf.PhosphorusPerServing,
+                PotassiumPerServing = nf.PotassiumPerServing,
+                SodiumPerServing = nf.SodiumPerServing,
+                Servings = 1,
+                Date = DateTime.Now
+            };
+        }
+    }
     public class NutritionFacts
     {
         [Key]
-        [Column("nutrition_id")]
         public int NutritionId { get; set; }
-        [Column("food_name")]
         [DisplayName("Name")]
         public string FoodName { get; set; }
-        [Column("calories")]
         [DisplayName("Calories")]
         public int CaloriesPerServing { get; set; }
-        [Column("carbohydrates")]
         [DisplayName("Carbohydrates")]
         public int CarbohydratesPerServing { get; set; }
-        [Column("protein")]
         [DisplayName("Protein")]
         public int ProteinPerServing { get; set; }
-        [Column("fat")]
         [DisplayName("Fat")]
         public int FatPerServing { get; set; }
-        [Column("phosphorus")]
         [DisplayName("Phosphorus")]
         public int PhosphorusPerServing { get; set; }
-        [Column("potassium")]
         [DisplayName("Potassium")]
         public int PotassiumPerServing { get; set; }
-        [Column("sodium")]
         [DisplayName("Sodium")]
         public int SodiumPerServing { get; set; }
-        [Column("servings")]
-        [DisplayName("Servings")]
-        public double Servings { get; set; }
-        [Column("date")]
-        [DisplayName("Date")]
-        [System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
-        public DateTime Date { get; set; }
     }
 }

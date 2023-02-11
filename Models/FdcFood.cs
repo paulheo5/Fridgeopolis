@@ -114,8 +114,6 @@ namespace Fridgeopolis.Models
                 PhosphorusPerServing = PhosphorusPerServing ?? 0,
                 PotassiumPerServing = PotassiumPerServing ?? 0,
                 SodiumPerServing = SodiumPerServing ?? 0,
-                Servings = 1,
-                Date = DateTime.Now
             };
         }
     }

@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Fridgeopolis.Models.NutritionFacts>
+﻿@model IEnumerable<Fridgeopolis.Models.Meal>
 
 @{
     ViewData["Title"] = "Index";
@@ -79,9 +79,9 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                <a asp-action="Edit" asp-route-id="@item.NutritionId">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.NutritionId">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.NutritionId">Delete</a>
+                <a asp-action="Edit" asp-route-id="@item.MealId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MealId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MealId">Delete</a>
             </td>
         </tr>
 }
