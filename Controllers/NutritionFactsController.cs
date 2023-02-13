@@ -32,7 +32,7 @@ namespace Fridgeopolis.Controllers
         // GET: NutritionFacts
         public async Task<IActionResult> Index()
         {
-              return View(await _context.NutritionData.ToListAsync());
+              return View(await _context.NutritionData.OrderByDescending(i => i.Date).ToListAsync());
         }
 
         public IActionResult Search()
