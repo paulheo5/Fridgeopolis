@@ -32,15 +32,10 @@
             @{
                 Html.RenderPartial("SummaryView");
             }
-            @using (Html.BeginForm("RecipeInstruction", "Home", new { id = Model.ID }, FormMethod.Get))
-            {
-            <p>
-                <button type="submit">Instructions</button>
-            </p>
-
-            }
+            <a href="@Url.Action("RecipeInstruction", "Home", new { id = Model.ID })">Instructions </a>
 
 
+      </p>
 
 
         <input type="submit" value="Save" />
@@ -49,6 +44,6 @@
 
 
 
-        </p>
+        
     </div>
 </form>
