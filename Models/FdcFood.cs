@@ -103,10 +103,12 @@ namespace Fridgeopolis.Models
             int? PhosphorusPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Phosphorus, new FoodNutrient() { value = 0}).value) ?? 0;
             int? PotassiumPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Potassium, new FoodNutrient() { value = 0 }).value) ?? 0;
             int? SodiumPerServing = (int?)Math.Round(food.foodNutrients.SingleOrDefault(fn => fn.nutrientId == (int) NutrientIds.Sodium, new FoodNutrient() { value = 0 }).value) ?? 0;
-            
+
             return new NutritionFacts()
             {
                 FoodName = FoodName,
+                ServingSize = food.servingSize.ToString(),
+                ServingSizeUnit = food.servingSizeUnit,
                 CaloriesPerServing = CaloriesPerServing == -1 ? (((int)CarbohydratesPerServing + (int)ProteinPerServing) * 4) + ((int)FatPerServing * 9) : (int)CaloriesPerServing,
                 CarbohydratesPerServing = CarbohydratesPerServing ?? 0,
                 ProteinPerServing = ProteinPerServing ?? 0,

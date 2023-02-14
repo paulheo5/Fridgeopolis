@@ -12,6 +12,8 @@ namespace Fridgeopolis.Models
             return new Meal()
             {
                 FoodName = nf.FoodName,
+                ServingSize = nf.ServingSize,
+                ServingSizeUnit = nf.ServingSizeUnit,
                 CaloriesPerServing = nf.CaloriesPerServing,
                 CarbohydratesPerServing = nf.CarbohydratesPerServing,
                 ProteinPerServing = nf.ProteinPerServing,
@@ -30,6 +32,10 @@ namespace Fridgeopolis.Models
         public int NutritionId { get; set; }
         [DisplayName("Name")]
         public string FoodName { get; set; }
+        [DisplayName("ServingSize")]
+        public string? ServingSize { get; set; }
+        [DisplayName("ServingSizeUnit")]
+        public string? ServingSizeUnit { get; set; }
         [DisplayName("Calories")]
         public int CaloriesPerServing { get; set; }
         [DisplayName("Carbohydrates")]
