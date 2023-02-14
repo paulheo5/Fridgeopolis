@@ -13,6 +13,12 @@ namespace Fridgeopolis.Models
         [Column("food_name")]
         [DisplayName("Name")]
         public string FoodName { get; set; }
+        [Column("serving_size")]
+        [DisplayName("Serving Size")]
+        public string? ServingSize { get; set; }
+        [Column("serving_size_unit")]
+        [DisplayName("ServingSizeUnit")]
+        public string? ServingSizeUnit { get; set; }
         [Column("calories")]
         [DisplayName("Calories")]
         public int CaloriesPerServing { get; set; }

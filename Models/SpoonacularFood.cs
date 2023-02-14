@@ -30,7 +30,7 @@
         public double percentOfDailyNeeds { get; set; }
     }
 
-    public class Ingredient
+    public class SPIngredient
     {
         public int id { get; set; }
         public string name { get; set; }
@@ -65,7 +65,7 @@
         public List<Nutrient>? nutrients { get; set; }
         public List<Property>? properties { get; set; }
         public List<Flavonoid>? flavonoids { get; set; }
-        public List<Ingredient>? ingredients { get; set; }
+        public List<SPIngredient>? ingredients { get; set; }
         public CaloricBreakdown? caloricBreakdown { get; set; }
         public WeightPerServing? weightPerServing { get; set; }
         public long? expires { get; set; }
