@@ -177,21 +177,20 @@ namespace Fridgeopolis.Controllers
             //Console.WriteLine(string.Concat("Hi ", details["FirstName"], " " + details["LastName"]));
             return View();
         }
+        [HttpPost]
         public IActionResult Save(Recipe model)
         {
-            
-            return RedirectToAction("Create", "PropertyModels", new { id = model.ID });
-            //if (id == null || _context.PropertyModels == null)
+            //PropertyModel data = new PropertyModel()
             //{
-            //    return NotFound();
-            //}
-
-            //var propertyModel = await _context.PropertyModels.FindAsync(id);
-            //if (propertyModel == null)
-            //{
-            //    return NotFound();
-            //}
-            //return View(propertyModel);
+            //    ID = model.ID,
+            //    Title = model.Title,
+            //    SourceUrl = model.SourceUrl
+            //};
+            //TempData["PopupMessages"] = JsonConvert.SerializeObject(_popupMessages);
+            TempData["mydata"] = model.ID;
+            TempData["mydata2"] = model.Title;
+            TempData["mydata3"] = model.SourceUrl;
+            return RedirectToAction("Create", "PropertyModels");
         }
 
         public IActionResult Privacy()

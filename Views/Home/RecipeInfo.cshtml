@@ -8,43 +8,47 @@
     }
 </style>
 
-  
-<div class="display-field">  
-<img src="@Url.Content(@Model.Image)" />  
-</div>
+<form asp-action="Save" asp-controller="Home" method="post">
+    <div class="form-group">
+        <div class="display-field">
+            <img src="@Url.Content(@Model.Image)" />
+        </div>
+        <input asp-for="ID" hidden />
+        <h1 style="color: teal">@Html.DisplayFor(model => model.Title)</h1>
 
-<h1 style="color: teal">@Html.DisplayFor(model => model.Title)</h1>
+        <input asp-for="Title" hidden />
 
-<h2>Ready in @Html.DisplayFor(model => model.ReadyInMinutes) minutes!</h2>
+        <h2>Ready in @Html.DisplayFor(model => model.ReadyInMinutes) minutes!</h2>
 
-<h3>For more information visit:
-</h3>
-<p1>
-    <a href="@Model.SourceUrl">@Html.DisplayFor(model => model.SourceUrl)</a>
-</p1>
+        <h3>
+            For more information visit:
+        </h3>
+        <p1>
+            <a href="@Model.SourceUrl">@Html.DisplayFor(model => model.SourceUrl)</a>
+        </p1>
+        <input asp-for="SourceUrl" hidden />
 
-<p>
-    @{
-        Html.RenderPartial("SummaryView");   
-    }
-      @using (Html.BeginForm("RecipeInstruction", "Home", new { id = Model.ID }, FormMethod.Get))
-    {
         <p>
+            @{
+                Html.RenderPartial("SummaryView");
+            }
+            @using (Html.BeginForm("RecipeInstruction", "Home", new { id = Model.ID }, FormMethod.Get))
+            {
+            <p>
                 <button type="submit">Instructions</button>
+            </p>
+
+            }
+
+
+
+
+        <input type="submit" value="Save" />
+
+
+
+
+
         </p>
-
-    }
-
-  
- 
-    @using (Html.BeginForm("Save", "Home", FormMethod.Post))
-    {
-        <input type="submit" name="actionType" value="Save" />
-
-        
-
-
-}
-
-</p>
-
+    </div>
+</form>

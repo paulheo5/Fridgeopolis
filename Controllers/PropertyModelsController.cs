@@ -46,7 +46,15 @@ namespace Fridgeopolis.Controllers
         // GET: PropertyModels/Create
         public IActionResult Create()
         {
-            return View();
+            PropertyModel data = new PropertyModel()
+            {
+                ID = int.Parse(TempData["mydata"].ToString()),
+                Title = TempData["mydata2"].ToString(),
+                SourceUrl = TempData["mydata3"].ToString()
+            };
+            //PropertyModel data = TempData["mydata"] as PropertyModel;
+            //var propertyModel = _context.RecipeData.FindAsync(data.ID);
+            return View(data);
         }
 
         // POST: PropertyModels/Create
