@@ -33,7 +33,14 @@
                 Html.RenderPartial("SummaryView");
             }
             <a href="@Url.Action("RecipeInstruction", "Home", new { id = Model.ID })">Instructions </a>
+            
+            <!--
+            <a onclick="toggleHidden()">Instructions</a>
+            -->
 
+            <div id = "instructions" hidden>
+                recipe info
+            </div>
 
       </p>
 
@@ -47,3 +54,10 @@
         
     </div>
 </form>
+
+<script>
+    function toggleHidden(){
+        let element = document.getElementById("instructions")
+        element.hidden = !element.hidden
+    }
+</script>
