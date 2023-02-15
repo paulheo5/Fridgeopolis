@@ -49,7 +49,7 @@ namespace Fridgeopolis.Controllers
             {
                 var jstr = await response.Content.ReadAsStringAsync();
                 //var recipeinfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
-                List<Root> oop = JsonConvert.DeserializeObject<List<Root>>(jstr);
+                List<Instructions> oop = JsonConvert.DeserializeObject<List<Instructions>>(jstr);
 
                 //var jstr2 = await response2.Content.ReadAsStringAsync();
                 //RecipeData recipeinfo2 = JsonConvert.DeserializeObject<RecipeData>(jstr2);

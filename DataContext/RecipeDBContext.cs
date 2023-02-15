@@ -11,9 +11,6 @@ namespace Fridgeopolis.DataContext
         }
  
         public DbSet<PropertyModel> PropertyRecipe { get; set; }
- 
-        public DbSet<Fridgeopolis.Models.RecipeData> RecipeData { get; set; }
-
         public DbSet<Meal> NutritionData { get; set; }
 
     }
