@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 namespace Fridgeopolis.Models
 {
 
-    public class Root
+    public class Instructions
     {
         public string name { get; set; }
         public List<Step> steps { get; set; }
