@@ -17,16 +17,23 @@ namespace Fridgeopolis.Models
 
         public string Summary { get; set; }
 
-        public List<Datum> Steps { get; set; }
+        public List<AnalyzedInstruction> analyzedInstructions { get; set; }
+        //public string name { get; set; }
+
+        //public List<Step> steps { get; set; }
 
         //[JsonProperty("sourceUrl")]
         public string SourceUrl { get; set; }
 
     }
-    public class Datum
+    public class AnalyzedInstruction
+    {
+        public string name { get; set; }
+        public List<Step> steps { get; set; }
+    }
+    public class Step
         
     {
-        public int id { get; set; }
         public string step { get; set;}
     }
 }

@@ -66,43 +66,43 @@ namespace Fridgeopolis.Controllers
                 return Content("No information found");
             }
         }
-        [HttpGet]
-        public async Task<IActionResult> RecipeSummary(Recipe model)
-        {
+        //[HttpGet]
+        //public async Task<IActionResult> RecipeSummary(Recipe model)
+        //{
 
-            if (client.BaseAddress == null)
-            {
-                client.BaseAddress = new Uri("https://api.spoonacular.com/");
-            }
-            //client.BaseAddress = new Uri("https://api.spoonacular.com/");
-            client.DefaultRequestHeaders.Accept.Clear();
-            client.DefaultRequestHeaders.Accept.Add(
-                new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("MyAPIKey", "36d0332aea3241798e916aa4cbd2a928");
+        //    if (client.BaseAddress == null)
+        //    {
+        //        client.BaseAddress = new Uri("https://api.spoonacular.com/");
+        //    }
+        //    //client.BaseAddress = new Uri("https://api.spoonacular.com/");
+        //    client.DefaultRequestHeaders.Accept.Clear();
+        //    client.DefaultRequestHeaders.Accept.Add(
+        //        new MediaTypeWithQualityHeaderValue("application/json"));
+        //    client.DefaultRequestHeaders.Add("MyAPIKey", "36d0332aea3241798e916aa4cbd2a928");
 
-            //HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/information?apiKey=" + "5828cde1106e400b9469ae1a2f9732ee" + "&includeNutrition=true");
-            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/summary?apiKey=" + "36d0332aea3241798e916aa4cbd2a928");
-            //ShowResult(response);
-            if (response.IsSuccessStatusCode)
-            {
-                var jstr = await response.Content.ReadAsStringAsync();
-                RecipeData recipeinfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
+        //    //HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/information?apiKey=" + "5828cde1106e400b9469ae1a2f9732ee" + "&includeNutrition=true");
+        //    HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/summary?apiKey=" + "36d0332aea3241798e916aa4cbd2a928");
+        //    //ShowResult(response);
+        //    if (response.IsSuccessStatusCode)
+        //    {
+        //        var jstr = await response.Content.ReadAsStringAsync();
+        //        RecipeData recipeinfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
 
-                //var jstr2 = await response2.Content.ReadAsStringAsync();
-                //RecipeData recipeinfo2 = JsonConvert.DeserializeObject<RecipeData>(jstr2);
+        //        //var jstr2 = await response2.Content.ReadAsStringAsync();
+        //        //RecipeData recipeinfo2 = JsonConvert.DeserializeObject<RecipeData>(jstr2);
 
-                return PartialView(recipeinfo);
-                //var jstr = await response.Content.ReadAsStringAsync();
-                //RecipeData recipeInfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
-                //model.ID = recipeInfo.ID;
-                //return View(recipeInfo);
+        //        return PartialView(recipeinfo);
+        //        //var jstr = await response.Content.ReadAsStringAsync();
+        //        //RecipeData recipeInfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
+        //        //model.ID = recipeInfo.ID;
+        //        //return View(recipeInfo);
 
-            }
-            else
-            {
-                return Content("No information found");
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        return Content("No information found");
+        //    }
+        //}
         [HttpGet]
         public async Task<IActionResult> RecipeInfo(Recipe model)
         {
@@ -123,6 +123,7 @@ namespace Fridgeopolis.Controllers
             if (response.IsSuccessStatusCode)
             {
                 var jstr = await response.Content.ReadAsStringAsync();
+
                 RecipeData recipeinfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
 
                 //var jstr2 = await response2.Content.ReadAsStringAsync();

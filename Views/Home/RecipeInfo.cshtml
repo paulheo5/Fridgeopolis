@@ -28,32 +28,37 @@
         </p1>
         <input asp-for="SourceUrl" hidden />
 
+
+
+
+
         <p>
             @{
                 Html.RenderPartial("SummaryView");
             }
-            <a href="@Url.Action("RecipeInstruction", "Home", new { id = Model.ID })">Instructions </a>
-            
-            <!--
-            <a onclick="toggleHidden()">Instructions</a>
-            -->
+    <input type="submit" value="Save" />
+
+        </p>
+    </div>
+    </form>
+
+    <div>
+
+            <button onclick="toggleHidden()">Steps</button>
+          
 
             <div id = "instructions" hidden>
-                recipe info
+                @foreach (var item in Model.analyzedInstructions)
+                {
+                    <p>
+                        @Html.DisplayFor(modelItem => item.steps)
+                    </p>
+                }
             </div>
 
-      </p>
+      
+</div>
 
-
-        <input type="submit" value="Save" />
-
-
-
-
-
-        
-    </div>
-</form>
 
 <script>
     function toggleHidden(){
