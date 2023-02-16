@@ -1,4 +1,5 @@
-﻿using Microsoft.Identity.Client;
+﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
+using Microsoft.Identity.Client;
 
 namespace Fridgeopolis.Models
 {
@@ -59,43 +60,16 @@ namespace Fridgeopolis.Models
     {
         public static NutritionFacts ToNutritionFacts(this SpoonacularFood food)
         {
-            int calories = int.Parse(food.calories);
-            int carbohydrates = int.Parse(food.carbs);
-            int protein = int.Parse(food.protein);
-            int fat = int.Parse(food.fat);
-            int phosphorus = -1;
-            int potassium = -1;
-            int sodium = -1;
+            int calories = getAmount(food, "calories");
+            int carbohydrates = getAmount(food, "carbohydrates");
+            int protein = getAmount(food, "protein");
+            int fat = getAmount(food, "fat");
+            int phosphorus = getAmount(food, "phosphorus");
+            int potassium = getAmount(food, "potassium");
+            int sodium = getAmount(food, "sodium");
             string servingSize = "";
             string servingSizeUnit = "";
 
-            //check for nutrients list and get renal nutrients from it
-            if(food.nutrients != null)
-            {
-                phosphorus = (int?) Math.Round(food.nutrients.SingleOrDefault(n => n.name.ToLower() == "phosphorus").amount) ?? -1;
-                potassium = (int?)Math.Round(food.nutrients.SingleOrDefault(n => n.name.ToLower() == "potassium").amount) ?? -1;
-                sodium = (int?)Math.Round(food.nutrients.SingleOrDefault(n => n.name.ToLower() == "sodium").amount) ?? -1;
-            }
-            else
-            {
-                //check good list for nutrients if exists
-                if(food.good != null)
-                {
-                    phosphorus = (int?)Math.Round(double.Parse(food.good.SingleOrDefault(n => n.title.ToLower() == "phosphorus").amount)) ?? -1;
-                    potassium = (int?)Math.Round(double.Parse(food.good.SingleOrDefault(n => n.title.ToLower() == "potassium").amount)) ?? -1;
-                    sodium = (int?)Math.Round(double.Parse(food.good.SingleOrDefault(n => n.title.ToLower() == "sodium").amount)) ?? -1;
-                }
-                //if values still not found, check bad list
-                if(food.bad != null)
-                {
-                    phosphorus = phosphorus == -1 ? (int?)Math.Round(double.Parse(food.bad.SingleOrDefault(n => n.title.ToLower() == "phosphorus").amount)) ?? -1 : phosphorus;
-
-                    potassium = potassium == -1 ? (int?)Math.Round(double.Parse(food.bad.SingleOrDefault(n => n.title.ToLower() == "potassium").amount)) ?? -1 : potassium;
-
-                    sodium = sodium == -1 ? (int?)Math.Round(double.Parse(food.bad.SingleOrDefault(n => n.title.ToLower() == "sodium").amount)) ?? -1 : sodium;
-
-                }
-            }
             if(food.weightPerServing != null)
             {
                 servingSize = food.weightPerServing.amount.ToString();
@@ -109,10 +83,45 @@ namespace Fridgeopolis.Models
                 CarbohydratesPerServing = carbohydrates,
                 ProteinPerServing = protein,
                 FatPerServing = fat,
-                PhosphorusPerServing = phosphorus == -1 ? 0 : phosphorus,
-                PotassiumPerServing = potassium == -1 ? 0: potassium,
-                SodiumPerServing = sodium == -1 ? 0 : sodium
+                PhosphorusPerServing = phosphorus,
+                PotassiumPerServing = potassium,
+                SodiumPerServing = sodium
             };
+        }
+        public static int getAmount(SpoonacularFood food, string nutrient)
+        {
+            if(food.nutrients != null && food.nutrients.SingleOrDefault(n => n.name == nutrient) != null)
+            {
+                return (int) Math.Round(food.nutrients.SingleOrDefault(n => n.name == nutrient).amount);
+            }
+            else if(food.good.SingleOrDefault(n => n.title.ToLower() == nutrient) != null)
+            {
+                string amount = food.good.SingleOrDefault(n => n.title.ToLower() == nutrient).amount;
+                for(int i = 0; i < amount.Length; i++)
+                {
+                    if (char.IsLetter(amount[i]))
+                    {
+                        amount = amount.Remove(i);
+                    }
+                }
+                return int.Parse(amount);
+            }
+            else if(food.bad.SingleOrDefault(n => n.title.ToLower() == nutrient) != null)
+            {
+                string amount = food.bad.SingleOrDefault(n => n.title.ToLower() == nutrient).amount;
+                for (int i = 0; i < amount.Length; i++)
+                {
+                    if (char.IsLetter(amount[i]))
+                    {
+                        amount = amount.Remove(i);
+                    }
+                }
+                return int.Parse(amount);
+            }
+            else
+            {
+                return 0;
+            }
         }
     }
 
