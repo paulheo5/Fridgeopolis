@@ -1,4 +1,4 @@
-﻿using Fridgeopolis.Models;
+﻿using Renipe.Models;
 using Microsoft.AspNetCore.Mvc;
 
 using System.Diagnostics;
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Components.Forms;
 using System.Reflection;
 using System.Net.Http;
 
-namespace Fridgeopolis.Controllers
+namespace Renipe.Controllers
 {
     public class HomeController : Controller
     {

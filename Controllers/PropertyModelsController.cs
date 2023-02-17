@@ -7,15 +7,14 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fridgeopolis.DataContext;
 using Fridgeopolis.Models;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Fridgeopolis.Controllers
+namespace Renipe.Controllers
 {
     public class PropertyModelsController : Controller
     {
-        private readonly RecipeDBContext _context;
+        private readonly RenipeDBContext _context;
 
-        public PropertyModelsController(RecipeDBContext context)
+        public PropertyModelsController(RenipeDBContext context)
         {
             _context = context;
         }
@@ -154,7 +153,7 @@ namespace Fridgeopolis.Controllers
         {
             if (_context.PropertyRecipe == null)
             {
-                return Problem("Entity set 'RecipeDBContext.PropertyRecipe'  is null.");
+                return Problem("Entity set 'RenipeDBContext.PropertyRecipe'  is null.");
             }
             var propertyModel = await _context.PropertyRecipe.FindAsync(id);
             if (propertyModel != null)

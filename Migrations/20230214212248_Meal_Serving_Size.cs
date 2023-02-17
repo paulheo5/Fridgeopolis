@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Fridgeopolis.Migrations
+namespace Renipe.Migrations
 {
     /// <inheritdoc />
     public partial class MealServingSize : Migration
