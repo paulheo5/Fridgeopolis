@@ -48,4 +48,26 @@ namespace Renipe.Models
         [System.ComponentModel.DataAnnotations.DataType(System.ComponentModel.DataAnnotations.DataType.Date)]
         public DateTime Date { get; set; }
     }
+    public static class MealToDisplay
+    {
+        public static Meal ToDisplay(this Meal meal)
+        {
+            return new Meal()
+            {
+                MealId = meal.MealId,
+                FoodName = meal.FoodName,
+                ServingSize = meal.ServingSize,
+                ServingSizeUnit = meal.ServingSizeUnit,
+                CaloriesPerServing = (int)Math.Round(meal.CaloriesPerServing * meal.Servings),
+                CarbohydratesPerServing = (int)Math.Round(meal.CarbohydratesPerServing * meal.Servings),
+                ProteinPerServing = (int) Math.Round(meal.ProteinPerServing * meal.Servings),
+                FatPerServing = (int) Math.Round(meal.FatPerServing * meal.Servings),
+                PhosphorusPerServing = (int) Math.Round(meal.PhosphorusPerServing * meal.Servings),
+                PotassiumPerServing =(int) Math.Round( meal.PotassiumPerServing * meal.Servings),
+                SodiumPerServing = (int) Math.Round(meal.SodiumPerServing * meal.Servings),
+                Servings = meal.Servings,
+                Date = meal.Date
+            };
+        }
+    }
 }
