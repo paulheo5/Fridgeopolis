@@ -32,7 +32,7 @@ namespace Renipe.Controllers
         // GET: NutritionFacts
         public async Task<IActionResult> Index()
         {
-              return View(await _context.NutritionData.OrderByDescending(i => i.Date).ToListAsync());
+              return View(await _context.NutritionData.OrderByDescending(i => i.Date).Select(m => m.ToDisplay()).ToListAsync());
         }
 
         public IActionResult Search()
