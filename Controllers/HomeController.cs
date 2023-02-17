@@ -141,6 +141,44 @@ namespace Renipe.Controllers
                 return Content("No information found");
             }
         }
+        [HttpGet]
+        public async Task<IActionResult> NutritionInfo(Recipe model)
+        {
+
+            if (client.BaseAddress == null)
+            {
+                client.BaseAddress = new Uri("https://api.spoonacular.com/");
+            }
+            //client.BaseAddress = new Uri("https://api.spoonacular.com/");
+            client.DefaultRequestHeaders.Accept.Clear();
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+            client.DefaultRequestHeaders.Add("MyAPIKey", "36d0332aea3241798e916aa4cbd2a928");
+
+            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/nutritionWidget.json?apiKey=" + "36d0332aea3241798e916aa4cbd2a928" + "&includeNutrition=true");
+            //HttpResponseMessage response2 = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/summary?apiKey=" + "5828cde1106e400b9469ae1a2f9732ee");
+            //ShowResult(response);
+            if (response.IsSuccessStatusCode)
+            {
+                var jstr = await response.Content.ReadAsStringAsync();
+
+                SpoonacularFood spNutrients = JsonConvert.DeserializeObject<SpoonacularFood>(jstr);
+
+                //var jstr2 = await response2.Content.ReadAsStringAsync();
+                //RecipeData recipeinfo2 = JsonConvert.DeserializeObject<RecipeData>(jstr2);
+
+                return View(spNutrients);
+                //var jstr = await response.Content.ReadAsStringAsync();
+                //RecipeData recipeInfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
+                //model.ID = recipeInfo.ID;
+                //return View(recipeInfo);
+
+            }
+            else
+            {
+                return Content("No information found");
+            }
+        }
 
         [HttpGet("ingredients")]
         public async Task<IActionResult> Details(Ingredient model)

@@ -33,14 +33,16 @@ namespace Renipe.Controllers
                 return NotFound();
             }
 
-            var propertyModel = await _context.PropertyRecipe
-                .FirstOrDefaultAsync(m => m.ID == id);
+            //var propertyModel = await _context.PropertyRecipe
+            //    .FirstOrDefaultAsync(m => m.ID == id);
+            var propertyModel = await _context.PropertyRecipe.FindAsync(id);
             if (propertyModel == null)
             {
                 return NotFound();
             }
 
-            return View(propertyModel);
+            //return View(propertyModel);
+            return RedirectToAction("RecipeInfo", "Home", new {id = propertyModel.ID});
 
             //return RedirectToAction("RecipeInfo/" + PropertyModel.ID, "Home");
         }
