@@ -5,18 +5,18 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Fridgeopolis.DataContext;
-using Fridgeopolis.Models;
+using Renipe.DataContext;
+using Renipe.Models;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
 using System.Net.WebSockets;
 using Microsoft.Build.Construction;
 
-namespace Fridgeopolis.Controllers
+namespace Renipe.Controllers
 {
     public class NutritionFactsController : Controller
     {
-        private readonly RecipeDBContext _context;
+        private readonly RenipeDBContext _context;
 
         HttpClient client = new();
 
@@ -24,7 +24,7 @@ namespace Fridgeopolis.Controllers
 
         static NutritionFacts nutritionItem = new();
 
-        public NutritionFactsController(RecipeDBContext context)
+        public NutritionFactsController(RenipeDBContext context)
         {
             _context = context;
         }
@@ -198,7 +198,7 @@ namespace Fridgeopolis.Controllers
         {
             if (_context.NutritionData == null)
             {
-                return Problem("Entity set 'RecipeDBContext.NutritionData'  is null.");
+                return Problem("Entity set 'RenipeDBContext.NutritionData'  is null.");
             }
             var nutritionFacts = await _context.NutritionData.FindAsync(id);
             if (nutritionFacts != null)

@@ -1,4 +1,4 @@
-namespace Fridgeopolis.Models
+namespace Renipe.Models
 {
     public class ErrorViewModel
     {

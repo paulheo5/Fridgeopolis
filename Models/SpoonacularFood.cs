@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.Identity.Client;
 
-namespace Fridgeopolis.Models
+namespace Renipe.Models
 {
     public class Bad
     {

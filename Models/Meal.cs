@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace Fridgeopolis.Models
+namespace Renipe.Models
 {
     [Table("NutritionData")]
     public class Meal

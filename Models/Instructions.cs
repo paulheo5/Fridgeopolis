@@ -1,7 +1,7 @@
 ﻿
 using Newtonsoft.Json;
 
-namespace Fridgeopolis.Models
+namespace Renipe.Models
 {
 
     //public class Instructions

@@ -1,11 +1,11 @@
-using Fridgeopolis.DataContext;
+using Renipe.DataContext;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<RecipeDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductConnection")));
+builder.Services.AddDbContext<RenipeDBContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("ProductConnection")));
 
 var app = builder.Build();
 

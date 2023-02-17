@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Fridgeopolis.Models
+namespace Renipe.Models
 {
 
     public partial class PropertyModel
