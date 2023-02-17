@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Fridgeopolis.DataContext;
-using Fridgeopolis.Models;
+using Renipe.DataContext;
 
 namespace Renipe.Controllers
 {
