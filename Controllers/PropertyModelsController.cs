@@ -41,6 +41,8 @@ namespace Renipe.Controllers
             }
 
             return View(propertyModel);
+
+            //return RedirectToAction("RecipeInfo/" + PropertyModel.ID, "Home");
         }
 
         // GET: PropertyModels/Create
