@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Fridgeopolis.DataContext;
 using Fridgeopolis.Models;
+using Microsoft.EntityFrameworkCore.Infrastructure;
 
 namespace Fridgeopolis.Controllers
 {
@@ -41,6 +42,8 @@ namespace Fridgeopolis.Controllers
             }
 
             return View(propertyModel);
+
+            //return RedirectToAction("RecipeInfo/" + PropertyModel.ID, "Home");
         }
 
         // GET: PropertyModels/Create
