@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Security.Permissions;
 
-namespace Fridgeopolis.Models
+namespace Renipe.Models
 {
     static class ToMealClass
     {

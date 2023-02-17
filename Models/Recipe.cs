@@ -4,7 +4,7 @@
 using Newtonsoft.Json;
 using System.ComponentModel.DataAnnotations;
 
-namespace Fridgeopolis.Models
+namespace Renipe.Models
 
 {
     public class Recipe
