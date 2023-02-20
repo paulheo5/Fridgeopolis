@@ -82,7 +82,7 @@ namespace Renipe.Controllers
             return View(nutritionFacts);
         }
 
-        // GET: NutritionFacts/NutritionDetails/5
+        // GET: NutritionFacts/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.NutritionData == null)
@@ -90,13 +90,13 @@ namespace Renipe.Controllers
                 return NotFound();
             }
 
-            var nutritionFacts = _context.NutritionData.FirstOrDefault(f => f.MealId == id);
-            if (nutritionFacts == null)
+            var meal = _context.NutritionData.FirstOrDefault(f => f.MealId == id);
+            if (meal == null)
             {
                 return NotFound();
             }
 
-            return View(nutritionFacts);
+            return View(meal.ToDisplay());
         }
 
         // GET: NutritionFacts/Create
