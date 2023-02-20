@@ -17,62 +17,62 @@
                 </dt>
                 <dd class="col-sm-10">
                     @Html.DisplayFor(model => model.FoodName)
-                    <input asp-for="FoodName" type="hidden" />
                 </dd>
+                    <input asp-for="FoodName" type="hidden" />
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.CaloriesPerServing)
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" id="calories">
                     @Html.DisplayFor(model => model.CaloriesPerServing)
-                    <input asp-for="CaloriesPerServing" type="hidden" />
                 </dd>
+                    <input asp-for="CaloriesPerServing" type="hidden" />
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.CarbohydratesPerServing)
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" id="carbohydrates">
                     @Html.DisplayFor(model => model.CarbohydratesPerServing)
-                    <input asp-for="CarbohydratesPerServing" type="hidden" />
                 </dd>
+                    <input asp-for="CarbohydratesPerServing" type="hidden" />
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.ProteinPerServing)
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" id="protein">
                     @Html.DisplayFor(model => model.ProteinPerServing)
-                    <input asp-for="ProteinPerServing" type="hidden" />
                 </dd>
+                    <input asp-for="ProteinPerServing" type="hidden" />
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.FatPerServing)
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" id="fat">
                     @Html.DisplayFor(model => model.FatPerServing)
-                    <input asp-for="FatPerServing" type="hidden" />
                 </dd>
+                    <input asp-for="FatPerServing" type="hidden" />
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.PhosphorusPerServing)
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" id="phosphorus">
                     @Html.DisplayFor(model => model.PhosphorusPerServing)
-                    <input asp-for="PhosphorusPerServing" type="hidden" />
                 </dd>
+                    <input asp-for="PhosphorusPerServing" type="hidden" />
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.PotassiumPerServing)
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" id="potassium">
                     @Html.DisplayFor(model => model.PotassiumPerServing)
-                    <input asp-for="PotassiumPerServing" type="hidden" />
                 </dd>
+                    <input asp-for="PotassiumPerServing" type="hidden" />
                 <dt class="col-sm-3">
                     @Html.DisplayNameFor(model => model.SodiumPerServing)
                 </dt>
-                <dd class="col-sm-10">
+                <dd class="col-sm-10" id="sodium">
                     @Html.DisplayFor(model => model.SodiumPerServing)
-                    <input asp-for="SodiumPerServing" type="hidden" />
                 </dd>
+                    <input asp-for="SodiumPerServing" type="hidden" />
                 <dt class="col-sm-3">
                         @Html.DisplayNameFor(model => model.Servings)
                 </dt>
                 <dd class="col-sm-10">
-                        @Html.EditorFor(model => model.Servings)
+                    <input asp-for="Servings" type="range" min=".25" max="5" step=".25" oninput='ServingsSlider()' /> <label id="slider-value">@Html.DisplayFor(model => model.Servings)</label>
                 </dd>
                 <dt class="col-sm-3">
                         @Html.DisplayNameFor(model => model.Date)
@@ -89,6 +89,32 @@
 <div>
     <a href='javascript:history.go(-2)'>Back to List</a>
 </div>
+
+<script>
+    const ServingsSlider = () => {
+        let val = event.target.value;
+        UpdateValues(val)
+    }
+    const UpdateValues = (val) => {
+        let element = document.getElementById("slider-value");
+        element.textContent = val
+        element = document.getElementById("calories")
+        element.textContent = @Model.CaloriesPerServing * val
+        element = document.getElementById("carbohydrates")
+        element.textContent = @Model.CarbohydratesPerServing * val
+        element = document.getElementById("protein")
+        element.textContent = @Model.ProteinPerServing * val
+        element = document.getElementById("fat")
+        element.textContent = @Model.FatPerServing * val;
+        element = document.getElementById("phosphorus")
+        element.textContent = @Model.PhosphorusPerServing * val;
+        element = document.getElementById("potassium")
+        element.textContent = @Model.PotassiumPerServing * val
+        element = document.getElementById("sodium")
+        element.textContent = @Model.SodiumPerServing * val
+    }
+    window.onload = UpdateValues(@Model.Servings)
+</script>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
