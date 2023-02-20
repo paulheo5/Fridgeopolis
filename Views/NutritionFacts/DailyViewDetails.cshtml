@@ -1,0 +1,101 @@
+﻿@model IEnumerable<Renipe.Models.Meal>
+
+@{
+    ViewData["Title"] = "DailyViewDetails";
+}
+
+<h1>DailyViewDetails</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.FoodName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServingSize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ServingSizeUnit)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CaloriesPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CarbohydratesPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProteinPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FatPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhosphorusPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PotassiumPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.SodiumPerServing)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Servings)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FoodName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServingSize)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServingSizeUnit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CaloriesPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CarbohydratesPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProteinPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FatPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PhosphorusPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PotassiumPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SodiumPerServing)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Servings)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.MealId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.MealId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.MealId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

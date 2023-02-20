@@ -24,6 +24,8 @@ namespace Renipe.Controllers
 
         static NutritionFacts nutritionItem = new();
 
+        static List<DayView> days = new();
+
         public NutritionFactsController(RenipeDBContext context)
         {
             _context = context;
@@ -213,6 +215,26 @@ namespace Renipe.Controllers
         private bool NutritionFactsExists(int id)
         {
           return _context.NutritionData.Any(e => e.MealId == id);
+        }
+
+        public async Task<IActionResult> DailyView()
+        {
+            days = new();
+            IEnumerable<IGrouping<DateTime, Meal>> groupings = _context.NutritionData.GroupBy(m => m.Date);
+            foreach(var g in groupings)
+            {
+                List<Meal> meals = g.ToList();
+                DayView day = new DayView(meals);
+                days.Add(day);
+            }
+            return View(days.OrderByDescending(d => d.date));
+        }
+
+        public async Task<IActionResult> DailyViewDetails(int id)
+        {
+            var date = days.FirstOrDefault(d => d.Id == id).date;
+            List<Meal> meals = _context.NutritionData.Where(m => m.Date == date).ToList();
+            return View(meals);
         }
     }
 }

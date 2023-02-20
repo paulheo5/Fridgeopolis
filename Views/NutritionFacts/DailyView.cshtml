@@ -1,0 +1,78 @@
+﻿@model IEnumerable<Renipe.Models.DayView>
+
+@{
+    ViewData["Title"] = "DailyView";
+}
+
+<h1>DailyView</h1>
+
+<p>
+    <a asp-action="Search">Track Meal</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.calories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.carbohydrates)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.phosphorus)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.potassium)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sodium)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.calories)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.carbohydrates)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.protein)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.phosphorus)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.potassium)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sodium)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Id)
+            </td>
+            <td>
+                <a asp-action="DailyViewDetails" asp-route-id="@item.Id">Details</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
