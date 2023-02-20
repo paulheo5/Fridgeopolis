@@ -7,19 +7,13 @@
 <h1>DailyViewDetails</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Search">Track Meal</a>
 </p>
 <table class="table">
     <thead>
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.FoodName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ServingSize)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.ServingSizeUnit)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.CaloriesPerServing)
@@ -56,12 +50,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.FoodName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServingSize)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.ServingSizeUnit)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.CaloriesPerServing)
