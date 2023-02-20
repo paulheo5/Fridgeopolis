@@ -9,6 +9,8 @@ namespace Renipe.Models
     {
         [Key]
         public int ID { get; set; }
+
+        public int RecipeId { get; set; }
         [Required]
         public string Title { get; set; } = null!;
 
