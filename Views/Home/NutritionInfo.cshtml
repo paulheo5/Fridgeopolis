@@ -1,0 +1,53 @@
+﻿@model SpoonacularFood
+@{
+    ViewData["Title"] = "NutritionInfo";
+}
+
+<h1>Nutrient Information</h1>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.calories)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.carbs)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.fat)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.protein)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.nutrients)
+            </th>
+   
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => model.calories)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.carbs)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.fat)
+                </td>
+                <td>
+                    @Html.DisplayFor(model=> model.protein)
+                </td>
+                <td>
+                    @Html.DisplayFor(model => model.nutrients)
+                </td>
+
+            </tr>
+        
+    </tbody>
+</table>
