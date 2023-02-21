@@ -43,9 +43,11 @@
     </form>
 
     <div>
+    <p>
     <a href="@Url.Action("NutritionInfo", "Home", new { id = Model.ID, Title = Model.Title })">
         Nutrition Information
     </a>
+    </p>
 
             <button onclick="toggleHidden()">Steps</button>
           
@@ -58,6 +60,18 @@
                     </p>
                 }
             </div>
+
+     <div>
+        <h2>Ingredients</h2>
+        @foreach(var item in Model.extendedIngredients)
+        {
+            
+            <p>
+                <img src="@Url.Content(@item.image)" />
+                @Html.DisplayFor(modelItem => item.name)
+            </p>
+        }
+    </div>
 
       
 </div>
