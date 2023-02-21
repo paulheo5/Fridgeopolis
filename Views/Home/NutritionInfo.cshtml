@@ -44,8 +44,15 @@
                     @Html.DisplayFor(model=> model.protein)
                 </td>
                 <td>
-                    @Html.DisplayFor(model => model.nutrients)
-                </td>
+              
+                @foreach(var item in Model.nutrients)
+                {
+                    @Html.DisplayFor(modelItem => item.name)
+                    @Html.DisplayFor(modelItem => item.amount)
+                    @Html.DisplayFor(modelItem => item.unit)
+                    @Html.DisplayFor(modelItem => item.percentOfDailyNeeds)
+                }
+            </td>
 
             </tr>
         
