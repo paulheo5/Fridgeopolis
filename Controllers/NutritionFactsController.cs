@@ -22,8 +22,6 @@ namespace Renipe.Controllers
 
         static FdcResults jsData = new();
 
-        static NutritionFacts nutritionItem = new();
-
         static List<DayView> days = new();
 
         public NutritionFactsController(RenipeDBContext context)
@@ -56,7 +54,6 @@ namespace Renipe.Controllers
             {
                 var jstr = await response.Content.ReadAsStringAsync();
                 jsData = JsonConvert.DeserializeObject<FdcResults>(jstr);
-
                 return View(jsData);
             }
             else
@@ -79,8 +76,6 @@ namespace Renipe.Controllers
             {
                 return NotFound();
             }
-
-            nutritionItem = nutritionFacts;
             return View(nutritionFacts);
         }
 
@@ -103,7 +98,7 @@ namespace Renipe.Controllers
 
         // GET: NutritionFacts/Create
         [HttpGet]
-        public IActionResult Create()
+        public IActionResult Create(NutritionFacts nutritionItem)
         {
             return View(nutritionItem.ToMeal());
         }
@@ -230,7 +225,7 @@ namespace Renipe.Controllers
             return View(days.OrderByDescending(d => d.date));
         }
 
-        public async Task<IActionResult> DailyViewDetails(int id)
+        public IActionResult DailyViewDetails(int id)
         {
             var date = days.FirstOrDefault(d => d.Id == id).date;
             List<Meal> meals = _context.NutritionData.Where(m => m.Date == date).ToList();

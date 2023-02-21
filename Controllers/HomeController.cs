@@ -167,7 +167,9 @@ namespace Renipe.Controllers
                 //var jstr2 = await response2.Content.ReadAsStringAsync();
                 //RecipeData recipeinfo2 = JsonConvert.DeserializeObject<RecipeData>(jstr2);
 
-                return View(spNutrients);
+                NutritionFacts nutrition = spNutrients.ToNutritionFacts();
+                nutrition.FoodName = model.Title;
+                return View(nutrition);
                 //var jstr = await response.Content.ReadAsStringAsync();
                 //RecipeData recipeInfo = JsonConvert.DeserializeObject<RecipeData>(jstr);
                 //model.ID = recipeInfo.ID;

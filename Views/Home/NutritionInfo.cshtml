@@ -1,53 +1,66 @@
-﻿@model SpoonacularFood
+﻿@model Renipe.Models.NutritionFacts
+
 @{
     ViewData["Title"] = "NutritionInfo";
 }
 
-<h1>Nutrient Information</h1>
+<h1>NutritionInfo</h1>
 
-
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.calories)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.carbs)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.fat)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.protein)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.nutrients)
-            </th>
-   
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-
-            <tr>
-                <td>
-                    @Html.DisplayFor(model => model.calories)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.carbs)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.fat)
-                </td>
-                <td>
-                    @Html.DisplayFor(model=> model.protein)
-                </td>
-                <td>
-                    @Html.DisplayFor(model => model.nutrients)
-                </td>
-
-            </tr>
-        
-    </tbody>
-</table>
+<div>
+    <h4>NutritionFacts</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FoodName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FoodName)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CaloriesPerServing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CaloriesPerServing)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.CarbohydratesPerServing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.CarbohydratesPerServing)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.ProteinPerServing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.ProteinPerServing)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.FatPerServing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.FatPerServing)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PhosphorusPerServing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PhosphorusPerServing)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.PotassiumPerServing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.PotassiumPerServing)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.SodiumPerServing)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.SodiumPerServing)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a href="@Url.Action("Create", "NutritionFacts", @Model)">Track as Meal</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
