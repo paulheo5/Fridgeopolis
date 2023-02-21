@@ -1,9 +1,10 @@
-﻿@model SpoonacularFood
+﻿@model Renipe.Models.NutritionFacts
+
 @{
     ViewData["Title"] = "NutritionInfo";
 }
 
-<h1>Nutrient Information</h1>
+<h1>NutritionInfo</h1>
 
 
 <table class="table">
@@ -44,15 +45,8 @@
                     @Html.DisplayFor(model=> model.protein)
                 </td>
                 <td>
-              
-                @foreach(var item in Model.nutrients)
-                {
-                    @Html.DisplayFor(modelItem => item.name)
-                    @Html.DisplayFor(modelItem => item.amount)
-                    @Html.DisplayFor(modelItem => item.unit)
-                    @Html.DisplayFor(modelItem => item.percentOfDailyNeeds)
-                }
-            </td>
+                    @Html.DisplayFor(model => model.nutrients)
+                </td>
 
             </tr>
         

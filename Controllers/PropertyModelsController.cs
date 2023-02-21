@@ -42,7 +42,7 @@ namespace Renipe.Controllers
             }
 
             //return View(propertyModel);
-            return RedirectToAction("RecipeInfo", "Home", new {id = propertyModel.ID});
+            return RedirectToAction("RecipeInfo", "Home", new { id = propertyModel.RecipeId });
 
             //return RedirectToAction("RecipeInfo/" + PropertyModel.ID, "Home");
         }
@@ -52,7 +52,7 @@ namespace Renipe.Controllers
         {
             PropertyModel data = new PropertyModel()
             {
-                ID = int.Parse(TempData["mydata"].ToString()),
+                RecipeId = int.Parse(TempData["mydata"].ToString()),
                 Title = TempData["mydata2"].ToString(),
                 SourceUrl = TempData["mydata3"].ToString()
             };
@@ -66,7 +66,7 @@ namespace Renipe.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("ID,Title,SourceUrl")] PropertyModel propertyModel)
+        public async Task<IActionResult> Create([Bind("ID,RecipeId,Title,SourceUrl")] PropertyModel propertyModel)
         {
             if (ModelState.IsValid)
             {
