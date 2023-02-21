@@ -15,8 +15,11 @@ namespace Renipe.Controllers
     public class HomeController : Controller
     {
         static HttpClient client = new HttpClient();
-        
-        
+
+        static string apiKey = "5828cde1106e400b9469ae1a2f9732ee";
+        //static string apiKey = "36d0332aea3241798e916aa4cbd2a928";
+
+
         private readonly ILogger<HomeController> _logger;
 
         public HomeController(ILogger<HomeController> logger)
@@ -40,10 +43,10 @@ namespace Renipe.Controllers
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("MyAPIKey", "36d0332aea3241798e916aa4cbd2a928");
+            client.DefaultRequestHeaders.Add("MyAPIKey", apiKey);
 
             //HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/information?apiKey=" + "5828cde1106e400b9469ae1a2f9732ee" + "&includeNutrition=true");
-            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/analyzedInstructions?apiKey=" + "36d0332aea3241798e916aa4cbd2a928");
+            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/analyzedInstructions?apiKey=" + apiKey);
             //ShowResult(response);
             if (response.IsSuccessStatusCode)
             {
@@ -115,9 +118,9 @@ namespace Renipe.Controllers
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("MyAPIKey", "36d0332aea3241798e916aa4cbd2a928");
-
-            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/information?apiKey=" + "36d0332aea3241798e916aa4cbd2a928" + "&includeNutrition=true");
+            client.DefaultRequestHeaders.Add("MyAPIKey", apiKey);
+                
+            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/information?apiKey=" + apiKey + "&includeNutrition=true");
             //HttpResponseMessage response2 = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/summary?apiKey=" + "5828cde1106e400b9469ae1a2f9732ee");
             //ShowResult(response);
             if (response.IsSuccessStatusCode)
@@ -153,9 +156,9 @@ namespace Renipe.Controllers
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("MyAPIKey", "36d0332aea3241798e916aa4cbd2a928");
-
-            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/nutritionWidget.json?apiKey=" + "36d0332aea3241798e916aa4cbd2a928" + "&includeNutrition=true");
+            client.DefaultRequestHeaders.Add("MyAPIKey", apiKey);
+                
+            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/nutritionWidget.json?apiKey=" + apiKey + "&includeNutrition=true");
             //HttpResponseMessage response2 = await client.GetAsync("https://api.spoonacular.com" + "/recipes/" + model.ID + "/summary?apiKey=" + "5828cde1106e400b9469ae1a2f9732ee");
             //ShowResult(response);
             if (response.IsSuccessStatusCode)
@@ -195,8 +198,8 @@ namespace Renipe.Controllers
             client.DefaultRequestHeaders.Accept.Clear();
             client.DefaultRequestHeaders.Accept.Add(
                 new MediaTypeWithQualityHeaderValue("application/json"));
-            client.DefaultRequestHeaders.Add("MyAPIKey", "36d0332aea3241798e916aa4cbd2a928");
-            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/findByIngredients?ingredients=" + model.ingredients + "&number=" + 10 + "&limitLicense=true&ranking=1&ignorePantry=false&apiKey=" + "36d0332aea3241798e916aa4cbd2a928");
+            client.DefaultRequestHeaders.Add("MyAPIKey", apiKey);
+            HttpResponseMessage response = await client.GetAsync("https://api.spoonacular.com" + "/recipes/findByIngredients?ingredients=" + model.ingredients + "&number=" + 10 + "&limitLicense=true&ranking=1&ignorePantry=false&apiKey=" + apiKey);
             //ShowResult(response);
             if (response.IsSuccessStatusCode)
             {
