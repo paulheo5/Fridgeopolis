@@ -92,7 +92,16 @@ namespace Renipe.Models
         {
             if(food.nutrients != null && food.nutrients.SingleOrDefault(n => n.name == nutrient) != null)
             {
-                return (int) Math.Round(food.nutrients.SingleOrDefault(n => n.name == nutrient).amount);
+                string amount = food.nutrients.SingleOrDefault(n => n.name == nutrient).amount.ToString();
+               
+                for (int i = 0; i < amount.Length; i++)
+                {
+                    if (char.IsLetter(amount[i]))
+                    {
+                        amount = amount.Remove(i);
+                    }
+                }
+                return (int) Math.Round(double.Parse(amount));
             }
             else if(food.good.SingleOrDefault(n => n.title.ToLower() == nutrient) != null)
             {
@@ -104,7 +113,7 @@ namespace Renipe.Models
                         amount = amount.Remove(i);
                     }
                 }
-                return int.Parse(amount);
+                return (int)Math.Round(double.Parse(amount));
             }
             else if(food.bad.SingleOrDefault(n => n.title.ToLower() == nutrient) != null)
             {
@@ -116,7 +125,7 @@ namespace Renipe.Models
                         amount = amount.Remove(i);
                     }
                 }
-                return int.Parse(amount);
+                return (int)Math.Round(double.Parse(amount));
             }
             else
             {
